@@ -1,0 +1,23 @@
+<?php
+
+function mytimer_init() {
+    if(arg(0) == 'timer') {
+        drupal_add_js('sites/all/modules/mytimer/timer.js', 'external');
+    }
+}
+
+function mytimer_menu() {
+    $items = array();
+    $items['timer'] = array(
+        'title' => 'My JS Timer',
+        'page callback' => 'timer_callback',
+        'access callback' => TRUE,
+        'type' => MENU_NORMAL_ITEM,
+    );
+    return $items;
+}
+
+
+function timer_callback() {
+    return "<p id='drupaltimer'>Timer</p>";
+}

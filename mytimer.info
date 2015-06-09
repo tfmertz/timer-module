@@ -1,0 +1,5 @@
+name = Custom Timer
+description = A countdown timer built by hand in Javascript
+package = Partake
+core = 7.x
+files[] = mytimer.module

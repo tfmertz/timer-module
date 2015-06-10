@@ -14,10 +14,34 @@ function mytimer_menu() {
         'access callback' => TRUE,
         'type' => MENU_NORMAL_ITEM,
     );
+    $items['node/ajax/%'] = array(
+        'page callback' => 'mytimer_get_ajax',
+        'page arguments' => array(2),
+        'type' => MENU_CALLBACK,
+        'access arguments' => array('access content'),
+        'delivery callback' => 'mytimer_ajax_callback',
+    );
     return $items;
 }
 
 
 function timer_callback() {
-    return "<p id='drupaltimer'>Timer</p>";
+    return "<p id='drupaltimer'>Timer</p>
+    <div id='ajax-target'>JAXX</div>";
+}
+
+function mytimer_get_ajax($nid){
+    $node = node_load($nid);
+    return node_view($node, 'page');
+}
+
+function mytimer_ajax_callback($page_callback_result) {
+    $content = drupal_render($page_callback_result);
+
+    $html = '<html><head><title></title>
+        </head><body>'.$content.'</body></html>';
+
+    print $html;
+
+    drupal_page_footer();
 }

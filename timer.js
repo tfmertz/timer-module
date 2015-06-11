@@ -3,16 +3,10 @@
         // Sets a timer
         // @param timeleft - amount left in seconds
         function setTimer(timeleft, page) {
+            //redirect to the page
+            $('#ajax-target').load('node/ajax/' + page);
             //get the timer to timeleft seconds from now
             var end_time = new Date(Date.now() + timeleft*1000);
-
-            var pages = [
-                'bong',
-                'weed',
-                'smoke',
-                'pipe'
-            ];
-
             var timer = setInterval(function() {
                 //find time remaining
                 var diff = end_time.getTime() - Date.now();
@@ -25,11 +19,11 @@
                     diff = 0;
                     clearInterval(timer);
                     // window.location = 'timer/' + pages[0];
-                    $('#ajax-target').load('node/ajax/' + page);
-                    if(page == 5){
-                        page = 1;
+
+                    if(page == 6){
+                        page = 0;
                     }
-                    setTimer(5, ++page);
+                    setTimer(2, ++page);
                 }
                 console.log(end_time + " " + diff);
                 console.log(Math.round(diff / 1000));
@@ -37,6 +31,6 @@
 
             }, 1000);
         }
-        setTimer(5, 2);
+        setTimer(2, 1);
     });
 }(jQuery));

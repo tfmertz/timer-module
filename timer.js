@@ -23,7 +23,7 @@
                     if(page == 6){
                         page = 0;
                     }
-                    setTimer(2, ++page);
+                    setTimer(30, ++page);
                 }
                 console.log(end_time + " " + diff);
                 console.log(Math.round(diff / 1000));
@@ -31,6 +31,6 @@
 
             }, 1000);
         }
-        setTimer(2, 1);
+        setTimer(30, 1);
     });
 }(jQuery));
